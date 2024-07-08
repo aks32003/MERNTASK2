@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+            text-align: center;
+        }
+        form {
+            display: inline-block;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: white;
+            text-align: left;
+        }
+        .error {
+            color: red;
+            font-size: 0.8em;
+        }
+        .success {
+            color: green;
+            font-size: 0.8em;
+        }
+        input, select {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 100%;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Registration form</h2>
+    <form id="registrationForm">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName">
+        <div id="firstNameError" class="error">POOR</div>
+
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName">
+        <div id="lastNameError" class="error">POOR</div>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email">
+        <div id="emailError" class="error">POOR</div>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+        <div id="passwordError" class="error">POOR</div>
+
+        <label for="rePassword">Re-enter Password</label>
+        <input type="password" id="rePassword" name="rePassword">
+        <div id="rePasswordError" class="error">POOR or MISMATCH</div>
+
+        <label>Gender</label>
+        <input type="radio" id="male" name="gender" value="Male"> Male
+        <input type="radio" id="female" name="gender" value="Female"> Female
+        <div id="genderError" class="error">POOR</div>
+
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age">
+        <div id="ageError" class="error">POOR</div>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone">
+        <div id="phoneError" class="error">POOR</div>
+
+        <label for="address">Address</label>
+        <textarea id="address" name="address"></textarea>
+        <div id="addressError" class="error">POOR</div>
+
+        <label for="state">State</label>
+        <input type="text" id="state" name="state">
+        <div id="stateError" class="error">POOR</div>
+
+        <label for="country">Country</label>
+        <select id="country" name="country">
+            <option value="">Choose your country</option>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+        </select>
+        <div id="countryError" class="error">POOR</div>
+
+        <label>Languages known</label>
+        <input type="checkbox" id="english" name="languages" value="English"> English
+        <input type="checkbox" id="kannada" name="languages" value="Kannada"> Kannada
+        <input type="checkbox" id="hindi" name="languages" value="Hindi"> Hindi
+        <input type="checkbox" id="telugu" name="languages" value="Telugu"> Telugu
+        <div id="languagesError" class="error">POOR</div>
+
+        <div>
+            <input type="checkbox" id="declaration" name="declaration">
+            <label for="declaration">Hereby I declare all the given details are true</label>
+        </div>
+        <div id="declarationError" class="error">POOR</div>
+
+        <button type="button" onclick="validateForm()">REGISTER</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+            
+            // Clear previous error messages
+            const errorElements = document.querySelectorAll('.error');
+            errorElements.forEach(elem => elem.style.display = 'none');
+            
+            // Validate First Name
+            const firstName = document.getElementById('firstName').value;
+            if (firstName === '') {
+                document.getElementById('firstNameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Last Name
+            const lastName = document.getElementById('lastName').value;
+            if (lastName === '') {
+                document.getElementById('lastNameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Email
+            const email = document.getElementById('email').value;
+            if (email === '') {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Password
+            const password = document.getElementById('password').value;
+            if (password === '') {
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Re-enter Password
+            const rePassword = document.getElementById('rePassword').value;
+            if (rePassword === '' || rePassword !== password) {
+                document.getElementById('rePasswordError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Gender
+            const genderMale = document.getElementById('male').checked;
+            const genderFemale = document.getElementById('female').checked;
+            if (!genderMale && !genderFemale) {
+                document.getElementById('genderError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Age
+            const age = document.getElementById('age').value;
+            if (age === '') {
+                document.getElementById('ageError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Phone Number
+            const phone = document.getElementById('phone').value;
+            if (phone === '') {
+                document.getElementById('phoneError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Address
+            const address = document.getElementById('address').value;
+            if (address === '') {
+                document.getElementById('addressError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate State
+            const state = document.getElementById('state').value;
+            if (state === '') {
+                document.getElementById('stateError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Country
+            const country = document.getElementById('country').value;
+            if (country === '') {
+                document.getElementById('countryError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Languages
+            const languages = document.querySelectorAll('input[name="languages"]:checked');
+            if (languages.length === 0) {
+                document.getElementById('languagesError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Declaration
+            const declaration = document.getElementById('declaration').checked;
+            if (!declaration) {
+                document.getElementById('declarationError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Registration successful!');
+            }
+        }
+    </script>
+</body>
+</html>
